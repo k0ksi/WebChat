@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;s
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace WebChat.WebService.Models
 {
     // Models used as parameters to AccountController actions.
