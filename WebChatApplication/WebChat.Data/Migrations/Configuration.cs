@@ -17,17 +17,5 @@ namespace WebChat.Data.Migrations
         {
             
         }
-
-        private IList<ApplicationUser> SeedUsers(WebChatContext context)
-        {
-            var usernames = new string[]
-            {
-                "dimityr.jechev",
-                "HristoVutov",
-                "manito_17711",
-                "Nichigo",
-                "zh.stoqnov"
-            };
-        }
     }
 }
