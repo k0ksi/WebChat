@@ -30,3 +30,5 @@ C:\Users\Lenovo\Desktop\WebChat\trunk\WebChatApplication\WebChat.Data\bin\Debug\
 C:\Users\Lenovo\Desktop\WebChat\trunk\WebChatApplication\WebChat.Data\obj\Debug\WebChat.Data.csprojResolveAssemblyReference.cache
 C:\Users\Lenovo\Desktop\WebChat\trunk\WebChatApplication\WebChat.Data\obj\Debug\WebChat.Data.dll
 C:\Users\Lenovo\Desktop\WebChat\trunk\WebChatApplication\WebChat.Data\obj\Debug\WebChat.Data.pdb
+C:\Users\Lenovo\Desktop\WebChatApplication\WebChat.Data\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Lenovo\Desktop\WebChatApplication\WebChat.Data\bin\Debug\Newtonsoft.Json.xml

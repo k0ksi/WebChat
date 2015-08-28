@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
+using WebChat.Data;
 
 namespace WebChat.WebService.Controllers
 {
     [Authorize]
     public class ValuesController : ApiController
     {
+        [AllowAnonymous]
         // GET api/values
-        public IEnumerable<string> Get()
+        public int Get()
         {
-            return new string[] { "value1", "value2" };
+            var ctx = new WebChatContext();
+            var usersCount = ctx.Users.Count();
+            return usersCount;
         }
 
         // GET api/values/5

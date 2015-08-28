@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace WebChat.Models
 {
@@ -18,15 +19,18 @@ namespace WebChat.Models
         [Required]
         public string SenderId { get; set; }
 
+        [JsonIgnore]
         public virtual ApplicationUser Sender { get; set; }
 
         [Required]
         public string ReceiverId { get; set; }
 
+        [JsonIgnore]
         public virtual ApplicationUser Receiver { get; set; }
 
         public int? ChatRoomId { get; set; }
 
+        [JsonIgnore]
         public virtual ChatRoom ChatRoom { get; set; }
     }
 }

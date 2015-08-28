@@ -24,10 +24,9 @@ namespace WebChat.Models
             this.createdChatRooms = new HashSet<ChatRoom>();
         }
 
-        [Required]
         [MinLength(3)]
         [MaxLength(30)]
-        public string Username { get; set; }
+        public string FullName { get; set; }
 
         public string ImageUrl { get; set; }
 

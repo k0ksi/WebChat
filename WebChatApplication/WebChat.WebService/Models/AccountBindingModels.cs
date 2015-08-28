@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
+
 namespace WebChat.WebService.Models
 {
     // Models used as parameters to AccountController actions.
@@ -31,10 +34,6 @@ namespace WebChat.WebService.Models
 
     public class RegisterBindingModel
     {
-        [Required]
-        [MinLength(5)]
-        public string Username { get; set; }
-
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }

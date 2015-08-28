@@ -21,5 +21,20 @@ namespace WebChat.Data
         {
             return new WebChatContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.SentMessages)
+                .WithRequired(m => m.Receiver)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.ReceivedMessages)
+                .WithRequired(m => m.Sender)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

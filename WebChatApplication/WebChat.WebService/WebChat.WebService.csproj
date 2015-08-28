@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1E43D9C6-2DF8-4A0B-8423-D23762C759FA}</ProjectGuid>
+    <ProjectGuid>{B50467EB-074B-4F14-A033-ED914D4A22CA}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -281,7 +281,7 @@
       <Name>WebChat.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebChat.Models\WebChat.Models.csproj">
-      <Project>{148FD56C-4550-4DEA-8D51-3FD7DE3E1718}</Project>
+      <Project>{148fd56c-4550-4dea-8d51-3fd7de3e1718}</Project>
       <Name>WebChat.Models</Name>
     </ProjectReference>
   </ItemGroup>
@@ -301,7 +301,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50946</DevelopmentServerPort>
+          <DevelopmentServerPort>53414</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50946/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
