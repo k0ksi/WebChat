@@ -20,6 +20,7 @@ namespace WebChat.Models
         [MaxLength(100)]
         public string Name { get; set; }
 
+        public ApplicationUser Creator { get; set; }
         public virtual ICollection<Message> Messages
         {
             get { return this.messages; }

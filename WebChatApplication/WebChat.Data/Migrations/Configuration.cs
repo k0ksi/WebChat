@@ -24,6 +24,7 @@ namespace WebChat.Data.Migrations
                 foreach (var applicationUser in users)
                 {
                     context.Users.Add(applicationUser);
+                    
                 }
                 context.SaveChanges();
             }
@@ -40,7 +41,7 @@ namespace WebChat.Data.Migrations
                 };
                 foreach (var room in rooms)
                 {
-                    context.ChatRooms.Add(new ChatRoom() {Name = room});
+                    context.ChatRooms.Add(new ChatRoom() { Name = room });
                 }
 
                 context.SaveChanges();
@@ -181,7 +182,7 @@ namespace WebChat.Data.Migrations
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
-            const string password = "TestPass_1";
+            const string password = "TestPassword_1";
 
             var userCreateResult = userManager.Create(user, password);
             var userCreateResult1 = userManager.Create(user1, password);

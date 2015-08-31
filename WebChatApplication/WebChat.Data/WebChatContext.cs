@@ -33,7 +33,12 @@ namespace WebChat.Data
                 .HasMany(u => u.ReceivedMessages)
                 .WithRequired(m => m.Sender)
                 .WillCascadeOnDelete(false);
-
+            modelBuilder.Entity<ApplicationUser>().HasMany(u => u.JoinedChatRooms).WithMany(c => c.Users).Map(uc =>
+            {
+                uc.MapLeftKey("ChatroomId");
+                uc.MapRightKey("ApplicationUserId");
+                uc.ToTable("UsersChatrooms");
+            });
             base.OnModelCreating(modelBuilder);
         }
     }
