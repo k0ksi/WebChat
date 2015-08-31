@@ -18,27 +18,30 @@ namespace WebChat.Data.Migrations
 
         protected override void Seed(WebChatContext context)
         {
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
             if (!context.Users.Any())
             {
                 List<ApplicationUser> users = SeedUsers(context);
                 foreach (var applicationUser in users)
                 {
                     context.Users.Add(applicationUser);
-                    
+                    context.SaveChanges();
+                    var userId = context.Users.Where(u => u.Email == applicationUser.Email).Select(u => u.Id).FirstOrDefault();
+                    userManager.UpdateSecurityStamp(userId);
                 }
-                context.SaveChanges();
             }
 
             if (!context.ChatRooms.Any())
             {
                 var rooms = new string[]
-                {
-                    "gaming",
-                    "programming",
-                    "lifestyle",
-                    "football",
-                    "cooking"
-                };
+                    {
+                        "gaming",
+                        "programming",
+                        "lifestyle",
+                        "football",
+                        "cooking"
+                    };
                 foreach (var room in rooms)
                 {
                     context.ChatRooms.Add(new ChatRoom() { Name = room });
@@ -46,7 +49,6 @@ namespace WebChat.Data.Migrations
 
                 context.SaveChanges();
             }
-
             if (!context.Messages.Any())
             {
                 var messages = new Message[]
@@ -54,82 +56,87 @@ namespace WebChat.Data.Migrations
                     new Message()
                     {
                         Content = "Hi! How are you?",
-                        ChatRoomId = 1,
                         MessageDateTime = DateTime.Now.AddDays(-1),
-                        SenderId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
-                        ReceiverId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "I'm fine, just a bit tired.",
-                        ChatRoomId = 1,
                         MessageDateTime = DateTime.Now,
-                        SenderId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
-                        ReceiverId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "Did you watched the latest lecture about advanced tree structures?",
-                        ChatRoomId = 2,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(-3),
-                        SenderId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
-                        ReceiverId = "fc46186a-9059-44f6-9a05-30776acfef80",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "Yes I did!",
-                        ChatRoomId = 2,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(-2),
-                        SenderId = "fc46186a-9059-44f6-9a05-30776acfef80",
-                        ReceiverId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "Wow! Feeling so special.",
-                        ChatRoomId = 3,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(-4),
-                        SenderId = "d69b5d4b-4e11-4008-a354-914fef18803b",
-                        ReceiverId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "Nananananananananna!!!",
-                        ChatRoomId = 3,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(-3),
-                        SenderId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
-                        ReceiverId = "d69b5d4b-4e11-4008-a354-914fef18803b",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id,
                     },
                     new Message()
                     {
                         Content = "What a game it was yesterday! Did you watched Valencia against Deportivo?",
-                        ChatRoomId = 4,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(0),
-                        SenderId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
-                        ReceiverId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "I was too tired and went to sleep :(!!",
-                        ChatRoomId = 4,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(0),
-                        SenderId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
-                        ReceiverId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "I cooked musaka yesterday. What have you cooked lately?",
-                        ChatRoomId = 5,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(-10),
-                        SenderId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
-                        ReceiverId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
                     },
                     new Message()
                     {
                         Content = "I cooked cream brulle.",
-                        ChatRoomId = 5,
+                        ChatRoomId = null,
                         MessageDateTime = DateTime.Now.AddDays(-9),
-                        SenderId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
-                        ReceiverId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                        SenderId = context.Users.First().Id,
+                        ReceiverId = context.Users.OrderBy(u=>u.Id).Skip(2).FirstOrDefault().Id
+                    },
+                      new Message()
+                    {
+                        Content = "Wassup dudes",
+                        ChatRoomId = 1,
+                        MessageDateTime = DateTime.Now.AddDays(-9),
+                        SenderId = context.Users.First().Id,
                     }
                 };
 
@@ -144,30 +151,37 @@ namespace WebChat.Data.Migrations
 
         private static List<ApplicationUser> SeedUsers(WebChatContext context)
         {
+          
+            var passwordHash = new PasswordHasher();
             var user = new ApplicationUser()
             {
                 UserName = "dimityr.jechev",
-                Email = "mitko@abv.bg"
+                Email = "mitko@abv.bg",
+                PasswordHash = passwordHash.HashPassword("Password@123")
             };
             var user1 = new ApplicationUser()
             {
                 UserName = "HristoVutov",
-                Email = "ico@abv.bg"
+                Email = "ico@abv.bg",
+                PasswordHash = passwordHash.HashPassword("Password@123")
             };
             var user2 = new ApplicationUser()
             {
                 UserName = "manito_17711",
-                Email = "manito@abv.bg"
+                Email = "manito@abv.bg",
+                PasswordHash = passwordHash.HashPassword("Password@123")
             };
             var user3 = new ApplicationUser()
             {
                 UserName = "Nichigo",
-                Email = "Nichigo@abv.bg"
+                Email = "Nichigo@abv.bg",
+                PasswordHash = passwordHash.HashPassword("Password@123")
             };
             var user4 = new ApplicationUser()
             {
                 UserName = "zh.stoqnov",
-                Email = "zh.stoqnov@abv.bg"
+                Email = "zh.stoqnov@abv.bg",
+                PasswordHash = passwordHash.HashPassword("Password@123")
             };
 
             List<ApplicationUser> users = new List<ApplicationUser>()
@@ -179,47 +193,9 @@ namespace WebChat.Data.Migrations
                 user
             };
 
-            var userStore = new UserStore<ApplicationUser>(context);
-            var userManager = new UserManager<ApplicationUser>(userStore);
+         
 
-            const string password = "TestPassword_1";
-
-            var userCreateResult = userManager.Create(user, password);
-            var userCreateResult1 = userManager.Create(user1, password);
-            var userCreateResult2 = userManager.Create(user2, password);
-            var userCreateResult3 = userManager.Create(user3, password);
-            var userCreateResult4 = userManager.Create(user4, password);
-
-            if (!userCreateResult.Succeeded)
-            {
-                throw new InvalidOperationException(string.Join(
-                    Environment.NewLine,
-                    userCreateResult.Errors));
-            }
-            if (!userCreateResult1.Succeeded)
-            {
-                throw new InvalidOperationException(string.Join(
-                    Environment.NewLine,
-                    userCreateResult.Errors));
-            }
-            if (!userCreateResult2.Succeeded)
-            {
-                throw new InvalidOperationException(string.Join(
-                    Environment.NewLine,
-                    userCreateResult.Errors));
-            }
-            if (!userCreateResult3.Succeeded)
-            {
-                throw new InvalidOperationException(string.Join(
-                    Environment.NewLine,
-                    userCreateResult.Errors));
-            }
-            if (!userCreateResult4.Succeeded)
-            {
-                throw new InvalidOperationException(string.Join(
-                    Environment.NewLine,
-                    userCreateResult.Errors));
-            }
+           
 
             return users;
         } 

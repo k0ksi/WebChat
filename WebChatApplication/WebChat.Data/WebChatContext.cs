@@ -26,7 +26,7 @@ namespace WebChat.Data
         {
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.SentMessages)
-                .WithRequired(m => m.Receiver)
+                .WithOptional(m => m.Receiver)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ApplicationUser>()
