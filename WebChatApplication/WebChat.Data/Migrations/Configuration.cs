@@ -40,7 +40,101 @@ namespace WebChat.Data.Migrations
                 };
                 foreach (var room in rooms)
                 {
-                    context.ChatRooms.Add(new ChatRoom() {Name = room,ChatroomCreator_Id = 0});
+                    context.ChatRooms.Add(new ChatRoom() {Name = room});
+                }
+
+                context.SaveChanges();
+            }
+
+            if (!context.Messages.Any())
+            {
+                var messages = new Message[]
+                {
+                    new Message()
+                    {
+                        Content = "Hi! How are you?",
+                        ChatRoomId = 1,
+                        MessageDateTime = DateTime.Now.AddDays(-1),
+                        SenderId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
+                        ReceiverId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                    },
+                    new Message()
+                    {
+                        Content = "I'm fine, just a bit tired.",
+                        ChatRoomId = 1,
+                        MessageDateTime = DateTime.Now,
+                        SenderId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                        ReceiverId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
+                    },
+                    new Message()
+                    {
+                        Content = "Did you watched the latest lecture about advanced tree structures?",
+                        ChatRoomId = 2,
+                        MessageDateTime = DateTime.Now.AddDays(-3),
+                        SenderId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                        ReceiverId = "fc46186a-9059-44f6-9a05-30776acfef80",
+                    },
+                    new Message()
+                    {
+                        Content = "Yes I did!",
+                        ChatRoomId = 2,
+                        MessageDateTime = DateTime.Now.AddDays(-2),
+                        SenderId = "fc46186a-9059-44f6-9a05-30776acfef80",
+                        ReceiverId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                    },
+                    new Message()
+                    {
+                        Content = "Wow! Feeling so special.",
+                        ChatRoomId = 3,
+                        MessageDateTime = DateTime.Now.AddDays(-4),
+                        SenderId = "d69b5d4b-4e11-4008-a354-914fef18803b",
+                        ReceiverId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                    },
+                    new Message()
+                    {
+                        Content = "Nananananananananna!!!",
+                        ChatRoomId = 3,
+                        MessageDateTime = DateTime.Now.AddDays(-3),
+                        SenderId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                        ReceiverId = "d69b5d4b-4e11-4008-a354-914fef18803b",
+                    },
+                    new Message()
+                    {
+                        Content = "What a game it was yesterday! Did you watched Valencia against Deportivo?",
+                        ChatRoomId = 4,
+                        MessageDateTime = DateTime.Now.AddDays(0),
+                        SenderId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
+                        ReceiverId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                    },
+                    new Message()
+                    {
+                        Content = "I was too tired and went to sleep :(!!",
+                        ChatRoomId = 4,
+                        MessageDateTime = DateTime.Now.AddDays(0),
+                        SenderId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                        ReceiverId = "0f896c71-e0d7-4fc6-92cc-8d17e5c3f4c5",
+                    },
+                    new Message()
+                    {
+                        Content = "I cooked musaka yesterday. What have you cooked lately?",
+                        ChatRoomId = 5,
+                        MessageDateTime = DateTime.Now.AddDays(-10),
+                        SenderId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                        ReceiverId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                    },
+                    new Message()
+                    {
+                        Content = "I cooked cream brulle.",
+                        ChatRoomId = 5,
+                        MessageDateTime = DateTime.Now.AddDays(-9),
+                        SenderId = "9689e7d4-9ae4-4e90-a1d5-37c8d3db20b9",
+                        ReceiverId = "2f13ac24-7174-44ac-82b3-2dd914a8f858",
+                    }
+                };
+
+                foreach (var message in messages)
+                {
+                    context.Messages.Add(message);
                 }
 
                 context.SaveChanges();

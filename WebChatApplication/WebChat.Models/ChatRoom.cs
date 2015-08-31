@@ -13,15 +13,12 @@ namespace WebChat.Models
             this.messages = new HashSet<Message>();
             this.users = new HashSet<ApplicationUser>();
         }
-        [Key]
+
         public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-        [Required]
-        public int ChatroomCreator_Id { get; set; }
-        public virtual ApplicationUser ChatroomCreator { get; set; }
 
         public virtual ICollection<Message> Messages
         {

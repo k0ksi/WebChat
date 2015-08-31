@@ -1,6 +1,5 @@
 using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.CSharp.RuntimeBinder;
 using WebChat.Data.Migrations;
 using WebChat.Models;
 
@@ -35,15 +34,6 @@ namespace WebChat.Data
                 .WithRequired(m => m.Sender)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasMany(u => u.JoinedChatRooms)
-                .WithMany(c => c.Users).Map(uc =>
-                {
-                    uc.MapLeftKey("ChatroomId");
-                    uc.MapRightKey("ApplicationUser_Id");
-                    uc.ToTable("UserChatrooms");
-                });
-                    
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -22,6 +22,7 @@ namespace WebChat.Models
         [JsonIgnore]
         public virtual ApplicationUser Sender { get; set; }
 
+        [Required]
         public string ReceiverId { get; set; }
 
         [JsonIgnore]
