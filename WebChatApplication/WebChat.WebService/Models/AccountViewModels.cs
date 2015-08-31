@@ -32,6 +32,10 @@ namespace WebChat.WebService.Models
         public bool HasRegistered { get; set; }
 
         public string LoginProvider { get; set; }
+
+        public string UserName { get; set; }
+
+        public string FullName { get; set; }
     }
 
     public class UserLoginInfoViewModel
