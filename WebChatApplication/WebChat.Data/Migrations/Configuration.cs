@@ -40,7 +40,7 @@ namespace WebChat.Data.Migrations
                 };
                 foreach (var room in rooms)
                 {
-                    context.ChatRooms.Add(new ChatRoom() {Name = room});
+                    context.ChatRooms.Add(new ChatRoom() {Name = room,ChatroomCreator_Id = 0});
                 }
 
                 context.SaveChanges();
