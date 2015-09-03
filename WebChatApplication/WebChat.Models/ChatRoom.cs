@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebChat.Models
@@ -10,11 +11,12 @@ namespace WebChat.Models
 
         public ChatRoom()
         {
+            this.Id = Guid.NewGuid();
             this.messages = new HashSet<Message>();
             this.users = new HashSet<ApplicationUser>();
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(100)]

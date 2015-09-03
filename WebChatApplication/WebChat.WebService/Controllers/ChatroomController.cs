@@ -46,7 +46,6 @@ namespace WebChat.WebService.Controllers
                     Message = "Chatroom created succesfully.",
                     Chatroom = new ChatroomBindingModel()
                     {
-                        Id = chatroom.Id,
                         Name = chatroom.Name
                     }
                 });
