@@ -6,7 +6,7 @@ namespace WebChat.WebService.Models
 {
     public class ChatroomViewModel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(2)]

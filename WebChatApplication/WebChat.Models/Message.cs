@@ -7,12 +7,7 @@ namespace WebChat.Models
     public class Message
     {
         [Required]
-        public Guid Id { get; set; }
-
-        public Message()
-        {
-            this.Id = Guid.NewGuid();
-        }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(1, ErrorMessage = "You cannot enter a message with less than 1 symbol.")]

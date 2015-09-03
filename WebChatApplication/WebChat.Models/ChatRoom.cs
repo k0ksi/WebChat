@@ -11,12 +11,11 @@ namespace WebChat.Models
 
         public ChatRoom()
         {
-            this.Id = Guid.NewGuid();
             this.messages = new HashSet<Message>();
             this.users = new HashSet<ApplicationUser>();
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(100)]
