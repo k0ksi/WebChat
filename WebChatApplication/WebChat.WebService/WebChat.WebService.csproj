@@ -206,7 +206,8 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\ChatroomController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\ChannelMessageController.cs" />
+    <Compile Include="Controllers\PersonalMessagesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
