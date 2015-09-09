@@ -74,5 +74,18 @@ namespace WebChat.WebService.Controllers
 
             return this.Ok(data);
         }
+
+        //GET api/PersonalMessages/{messageId}
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetMessages(int id)
+        {
+            string senderName = this.User.Identity.Name;
+            var data = this.Data.Messages
+                .Where(m => m.Sender.UserName == senderName && m.Id == id)
+                .Select(MessageViewModels.Create);
+
+            return this.Ok(data);
+        }
     }
 }
