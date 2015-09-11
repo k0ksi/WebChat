@@ -61,9 +61,10 @@ namespace WebChat.WebService.Controllers
             return this.Ok(data);
         }
 
-        //GET api/PersonalMessages
+        //GET api/PersonalMessages/SendMessages
         [HttpGet]
         [AllowAnonymous]
+        [Route("api/PersonalMessages/SendMessages")]
         public IHttpActionResult GetAllMessages()
         {
             string senderName = this.User.Identity.Name;
@@ -83,6 +84,21 @@ namespace WebChat.WebService.Controllers
             string senderName = this.User.Identity.Name;
             var data = this.Data.Messages
                 .Where(m => m.Sender.UserName == senderName && m.Id == id)
+                .Select(MessageViewModels.Create);
+
+            return this.Ok(data);
+        }
+
+        //GET api/PersonalMessages/ReceivedMessages
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/PersonalMessages/ReceivedMessages")]
+        public IHttpActionResult GetReceivedMessages()
+        {
+            string receiverName = this.User.Identity.Name;
+            var data = this.Data.Messages
+                .Where(m => m.Receiver.UserName == receiverName)
+                .OrderBy(m => m.MessageDateTime)
                 .Select(MessageViewModels.Create);
 
             return this.Ok(data);
